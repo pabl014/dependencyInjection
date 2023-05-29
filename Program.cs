@@ -1,11 +1,14 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using uwierzytelnianieClaimsIdentity.Data;
+using uwierzytelnianieClaimsIdentity.Models;
+using uwierzytelnianieClaimsIdentity.Services;
 using Microsoft.AspNetCore.Http;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.AddScoped<SearchInterface, SearchService>();
 var connectionString = builder.Configuration.GetConnectionString("loggedUsersConnection");
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
 	options.UseSqlServer(connectionString));
